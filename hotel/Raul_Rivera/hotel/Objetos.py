@@ -23,3 +23,7 @@ class Inventario():
         self.tipo=tipo
         self.estado=estado
         
+    def revisarInventario(self):
+        print(f"Tipo : {self.tipo}")
+        print(f"Estado: {self.estado}")
+        return self
