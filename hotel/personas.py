@@ -1,4 +1,4 @@
-from objetos import habitacion, comida
+from hotel.felipe_guilmai.objetos import habitacion, comida
 
 class chef():
     def __init__(self, nombre: str, id: int, locacion: str):
