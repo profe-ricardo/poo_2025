@@ -1,12 +1,12 @@
 from objetos import habitacion, comida
 
 class chef():
-    def __init__(self, nombre: str, id: int, locacion: str):
+    def __init__(self,nombre: str, id: int, locacion: str):
         self.nombre = nombre
         self.id = id
         self.locacion = locacion
 
-    def tomar_pedidos():
+    def tomar_orden():
         pass
 
 class manager():
@@ -14,15 +14,15 @@ class manager():
         self.nombre = nombre
         self.id = id
         self.telefono = telefono
-        self.locacion = locacion
-
-    def abastecer_inventario():
+        self.locacion = locacion 
+    
+    def copiar_inventario():
         pass
 
-    def guardar_opinion():
+    def registro_quejas():
         pass
 
-    def gestionar_trabajadores():
+    def control_trabajadores():
         pass
 
 class recepcionista():
@@ -32,16 +32,16 @@ class recepcionista():
         self.telefono = telefono
         self.locacion = locacion
 
-    def comprobar_disponibilidad():
+    def habitaciones_disponibles():
         pass
 
-    def reservar_habitacion():
+    def reservar_habitaciones():
         pass
 
     def generar_boleta():
         pass
 
-    def aceptar_opinion():
+    def recibir_opinion():
         pass
 
 class personalAseo():
@@ -54,12 +54,12 @@ class personalAseo():
         pass
 
 class cliente():
-    def __init__(self, nombre: str, id: int, telefono: int, direccion: str, habitacion: habitacion):
+    def __init__(self,nombre: str, id: int, telefono:int, direccion: str, habitacion: habitacion):
         self.nombre = nombre
         self.id = id
         self.telefono = telefono
-        self.direccion = direccion
-        self.habitacion = habitacion
+        self.direccion = habitacion 
+        self.habitacion = habitacion 
 
     def check_in():
         pass
@@ -67,12 +67,13 @@ class cliente():
     def check_out():
         pass
 
-    def pagar_boleta():
+    def Pagar_boleta():
         pass
 
-    def pedir_comida(self, pedido: list[comida]):
+    def pedir_comida(self,pedido: list[comida]):
         for c in pedido:
             print(c.nombre)
 
     def subir_comentarios():
         pass
+    
