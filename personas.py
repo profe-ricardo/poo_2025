@@ -235,9 +235,3 @@ class cliente():
 <<<<<<< HEAD
     def subir_comentario():
         pass
-=======
-    def subir_comentarios():
-        pass
-    
->>>>>>> f04b3d3321f83c58da4f68ea72da9cd1194155eb
->>>>>>> 4deaab7c4c1810a0fc9be5c9944d0bd2e3b02a7a
