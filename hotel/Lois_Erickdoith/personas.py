@@ -1,4 +1,4 @@
-from objetos import habitacion, comida
+from hotel.luis_carrasco.objetos import habitacion, comida
 
 
 class chef():
