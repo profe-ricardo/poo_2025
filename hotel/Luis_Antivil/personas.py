@@ -1,20 +1,22 @@
 from objetos import habitacion, comida
 
 class chef():
-    def __init__(self, nombre: str, id: int, locacion: str):
-        self.nombre = nombre
-        self.id = id
-        self.locacion = locacion
+    def __init__(self, nombre:str,id:int,locacion:str):
+        self.nombre=nombre
+        self.id=id
+        self.locacion=locacion
 
     def tomar_pedidos():
         pass
 
+
+
 class manager():
-    def __init__(self, nombre: str, id: int, telefono: int, locacion: str):
-        self.nombre = nombre
-        self.id = id
-        self.telefono = telefono
-        self.locacion = locacion
+    def __init__(self, nombre: str, id:int, telefono:int, locacion:str):    
+        self.nombre=nombre
+        self.id=id
+        self.telefono=telefono
+        self.locacion=locacion
 
     def abastecer_inventario():
         pass
@@ -25,41 +27,49 @@ class manager():
     def gestionar_trabajadores():
         pass
 
+
+
+
 class recepcionista():
-    def __init__(self, nombre: str, id: int, telefono: int, locacion: str):
-        self.nombre = nombre
-        self.id = id
-        self.telefono = telefono
-        self.locacion = locacion
+    def __init__(self,nombre:str,id:int,telefono:int,locacion:str):
+        self.nombre=nombre
+        self.id=id
+        self.telefono=telefono
+        self.locacion=locacion
 
     def comprobar_disponibilidad():
         pass
 
-    def reservar_habitacion():
+    def reservar_habitaciones():
         pass
 
     def generar_boleta():
         pass
 
-    def aceptar_opinion():
+    def aceptar_comentarios():
         pass
 
-class personalAseo():
-    def __init__(self, nombre: str, id: int, locacion: str):
-        self.nombre = nombre
-        self.id = id
-        self.locacion = locacion
+
+
+class personal_aseo():
+    def __init__(self,nombre:str,id:int,locacion:str):
+        self.nombre=nombre
+        self.id=id
+        self.locacion=locacion
 
     def limpiar_habitacion():
         pass
 
+
+
+
 class cliente():
-    def __init__(self, nombre: str, id: int, telefono: int, direccion: str, habitacion: habitacion):
-        self.nombre = nombre
+    def __init__(self,nombre:str,id:int,telefono:int,direccion:str,habitacion:habitacion):
+        self.nombre=nombre
         self.id = id
-        self.telefono = telefono
-        self.direccion = direccion
-        self.habitacion = habitacion
+        self.telefono=telefono
+        self.direccion=direccion
+        self.habitacion=habitacion 
 
     def check_in():
         pass
@@ -70,9 +80,9 @@ class cliente():
     def pagar_boleta():
         pass
 
-    def pedir_comida(self, pedido: list[comida]):
+    def pedir_comida(self,pedido: list[comida]):
         for c in pedido:
             print(c.nombre)
 
-    def subir_comentarios():
+    def subir_comentario():
         pass
