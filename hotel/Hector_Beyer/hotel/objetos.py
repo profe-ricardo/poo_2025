@@ -13,8 +13,14 @@ class boleta():
         self.numbero = numero
         self.nombre = nombre
 
-class inventario():
+class inventarios():
     def __init__(self, tipo:str, estado:str):
         self.tipo = tipo
         self.estado = estado
+
+    def revisarInventario(self):
+        print(f"Tipo: {self.tipo}")
+        print(f"Estado: {self.estado}")
+
+        return self
 
