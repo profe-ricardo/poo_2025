@@ -1,78 +1,82 @@
-from hotel.felipe_guilmai.objetos import habitacion, comida
+from Objetos import Habitacion, Comida
 
-class chef():
+class Chef(): 
     def __init__(self, nombre: str, id: int, locacion: str):
         self.nombre = nombre
         self.id = id
-        self.locacion = locacion
-
-    def tomar_pedidos():
+        self.Locacion = locacion
+    
+    def Tomar_Pedidos():
         pass
 
-class manager():
+class Manager():
     def __init__(self, nombre: str, id: int, telefono: int, locacion: str):
         self.nombre = nombre
         self.id = id
         self.telefono = telefono
-        self.locacion = locacion
-
-    def abastecer_inventario():
+        self.Locacion = locacion
+    
+    def Abastecer_Inventario():
+        pass
+    
+    def Guardar_Opinion():
         pass
 
-    def guardar_opinion():
+    def Control_trabajadores():
         pass
 
-    def gestionar_trabajadores():
-        pass
-
-class recepcionista():
+class Recepcionista():
     def __init__(self, nombre: str, id: int, telefono: int, locacion: str):
         self.nombre = nombre
         self.id = id
         self.telefono = telefono
-        self.locacion = locacion
-
-    def comprobar_disponibilidad():
+        self.Locacion = locacion
+    
+    def Habitaciones_Disponibles():
         pass
 
-    def reservar_habitacion():
+    def Libro_Habitaciones():
         pass
 
-    def generar_boleta():
+    def Generar_Boleta():
         pass
 
-    def aceptar_opinion():
+    def Recibir_Opinion():
         pass
 
-class personalAseo():
+
+class Personal_Aseo():
     def __init__(self, nombre: str, id: int, locacion: str):
         self.nombre = nombre
         self.id = id
-        self.locacion = locacion
-
-    def limpiar_habitacion():
+        self.Locacion = locacion
+    
+    def Limpiar_habitacion():
         pass
 
-class cliente():
-    def __init__(self, nombre: str, id: int, telefono: int, direccion: str, habitacion: habitacion):
+class Clientes():
+    def __init__(self, nombre: str, id: int, telefono: int, direccion: str, habitacion: Habitacion):
         self.nombre = nombre
         self.id = id
         self.telefono = telefono
         self.direccion = direccion
         self.habitacion = habitacion
-
-    def check_in():
+    
+    def check_in ():
         pass
-
+    
     def check_out():
         pass
 
-    def pagar_boleta():
+    def PagarBoleta():
         pass
-
-    def pedir_comida(self, pedido: list[comida]):
+    
+    def OrdenarComida(self, pedido: list[Comida]):
         for c in pedido:
             print(c.nombre)
-
-    def subir_comentarios():
+    
+    def Subir_Comentario():
         pass
+
+    
+

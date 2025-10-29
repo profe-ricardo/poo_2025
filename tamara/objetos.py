@@ -4,7 +4,7 @@ class comida():
         self.nombre = nombre
 
 class habitacion():
-    def __init__(self, numero: int, locacion: str):
+    def __init(self, numero: int, locacion: str):
         self.numero = numero
         self.locacion = locacion
 
