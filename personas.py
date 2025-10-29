@@ -12,7 +12,7 @@ class chef():
     
 =======
 <<<<<<< HEAD
-from hotel.Luis_Antivil.objetos import habitacion, comida
+from hotel.Chr_vargas.objetos import habitacion, comida
 
 class chef():
     def __init__(self, nombre:str,id:int,locacion:str):
