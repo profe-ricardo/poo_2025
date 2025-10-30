@@ -1,18 +1,4 @@
 class comida():
-<<<<<<< HEAD
-    """"""
-    
-class habitacion():
-    """"""
-
-class boleta():
-    """"""
-    
-class inventario():
-    """"""
-    
-    
-=======
     def __init__(self, id: int, nombre: str):
         self.id = id
         self.nombre = nombre
@@ -31,5 +17,10 @@ class inventarios():
     def __init__(self, tipo: str, estado: str):
         self.tipo = tipo
         self.estado = estado
+
+    def revisarInventario(self):
+        print(f"Tipo: {self.tipo}")
+        print(f"Estado: {self.estado}")
+
+        return self
         
->>>>>>> 4deaab7c4c1810a0fc9be5c9944d0bd2e3b02a7a
