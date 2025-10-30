@@ -17,3 +17,10 @@ class inventario():
     def __init__(self, tipo: str, estado: str):
         self.tipo = tipo
         self.estado = estado
+        
+        
+    def revisarinventario(self):
+        print(f"tipo: {self.tipo}")
+        print(f"estado: {self.estado}")
+            
+        return self
