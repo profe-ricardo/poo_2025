@@ -1,4 +1,4 @@
-from hotel.Matias_Soto.Objetos import Habitacion, Comida
+from Objetos import Habitacion, Comida
 
 class Chef(): 
     def __init__(self, nombre: str, id: int, locacion: str):
