@@ -10,4 +10,4 @@ def __main__():
 def controlInventario(obj: inventarios):
     obj.revisarInventario()
 
-__main__()
+__main__() 
