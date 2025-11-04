@@ -10,4 +10,8 @@ def __main__():
 def controlInventario(obj: inventarios):
     obj.revisarInventario()
 
+<<<<<<< Updated upstream
 __main__() 
+=======
+__main__()
+>>>>>>> Stashed changes
