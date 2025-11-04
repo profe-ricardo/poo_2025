@@ -1,13 +1,14 @@
-from Personas import Personal_Aseo, Manager, Clientes, Recepcionista
-from Objetos import Habitacion,Comida, Inventario, Boleta 
+from view.Personas import chef
 
 def _main_():
-    print("Aplicacion ejecutandose")
+    print("Aplicacion Inicial")
 
-    bebida = Inventario("gaseosa", "Restock")
-    controlInventario(bebida)
+    chefcito = chef("remi", 1 , "Paris", ["Rata"])
+    
+    print(chefcito.ver_pedido())
 
-def controlInventario(obj: Inventario):
-    obj.revisarInventario()
+    print(chefcito.recibir_pedido(["Bebida","Completo", "Pie de limon"]))
+
+    print(chefcito.ver_pedido())
 
 _main_()
