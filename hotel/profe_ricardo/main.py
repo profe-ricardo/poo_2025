@@ -1,13 +1,39 @@
-from view.personas_v import chef
+# from hotel.profe_ricardo.view.personas_v import chef
 
-def __main__():
+# def main():
+#     print("Aplicacion iniciada")
+#     chefcito = chef('Remi', 1, 'Paris', ['Ratatoullie'])
+
+#     print(chefcito.ver_pedidos())
+#     print(chefcito.recibir_pedido(['Bebida', 'Completo', 'Pie de limon']))
+#     print(chefcito.ver_pedidos())
+
+from hotel.profe_ricardo.config.db_config import ConexionOracle
+from hotel.profe_ricardo.model.personas_m import UsuarioModel
+from hotel.profe_ricardo.controller.personas_c import UsuarioController
+from hotel.profe_ricardo.view.personas_v import UsuarioView
+
+def conectarBD():
+    db = ConexionOracle("", "", "")
+    db.conectar()
+
+    return db
+
+def main():
+    db = conectarBD()
+    modelo = UsuarioModel(db)
+    controlador = UsuarioController(modelo)
+    vista = UsuarioView()
+
     print("Aplicacion iniciada")
-    chefcito = chef('Remi', 1, 'Paris', ['Ratatoullie'])
 
-    print(chefcito.ver_pedidos())
+    ingreso = controlador.registrar_usuario('Ricardo', 912345678)
 
-    print(chefcito.recibir_pedido(['Bebida', 'Completo', 'Pie de limon']))
+    if ingreso:
+        usuarios = controlador.listar_usuarios()
+        vista.mostrar_usuarios(usuarios)
 
-    print(chefcito.ver_pedidos())
+    db.desconectar()
 
-__main__()
+if __name__ == "__main__":
+    main()
