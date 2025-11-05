@@ -1,21 +1,21 @@
 import oracledb
 
 class Conexionoracle:
-    def __init__(self,usuaurio: str, password: str, url: str):
-        self.usuario = usuaurio
+    def __init__(self,usuario: str, password: str, url: str):
+        self.usuario = usuario
         self.password = password
         self.url = url
         self.connection = None
 
     def conectar(self):
         try:
-            self.connection = oracledb.connect (
+            self.connection = oracledb.connect(
                 user = self.usuario,
                 password = self.password,
                 dsn = self.url
             )
             print ("[INFO]: Conectado a BD correctamente")
-        except oracledb.DatebaseError as e:
+        except oracledb.DatabaseError as e:
              error, = e.args
              print(f"[ERROR]: No se pudo conectar a BD -> {error.message}")  
 
