@@ -1,4 +1,4 @@
-from model.personas import chef
+from hotel.camilo_hernandez.model.personas_m import chef
 
 class chef_c(chef):
     def __init__(self, nombre: str, id: int, locacion: str, pedidos: list):
@@ -9,3 +9,4 @@ class chef_c(chef):
         self.tomar_pedidos(pedido)
         self.pedidos.sort()
         return True
+    
