@@ -9,8 +9,8 @@ class chef:
     
     def Tomar_Pedidos(self, pedido: list) -> bool:
         for p in pedido:
-            self.pedido.append(p)
+            self.pedidos.append(p)
         return True
     
-    def ver_pedido(self) -> list:
-        return self.pedido
+    def ver_pedidos(self) -> list:
+        return self.pedidos
