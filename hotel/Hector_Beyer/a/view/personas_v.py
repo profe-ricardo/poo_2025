@@ -1,4 +1,4 @@
-from controller.personas import Chef
+from hotel.Hector_Beyer.a.controller.personas_c import Chef
 
 class chef(Chef):
     def __init__(self, nombre:str, id: int, locacion:str, pedidos: list):
