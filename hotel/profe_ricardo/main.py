@@ -14,7 +14,7 @@ from hotel.profe_ricardo.controller.personas_c import UsuarioController
 from hotel.profe_ricardo.view.personas_v import UsuarioView
 
 def conectarBD():
-    db = ConexionOracle("", "", "")
+    db = ConexionOracle("system", "Ina.2025", "localhost:1521/xe")
     db.conectar()
 
     return db
