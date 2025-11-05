@@ -1,4 +1,4 @@
-from model.personas import chef
+from model.personas_m import chef
 
 class Chef(chef):
     def __init__(self, nombre: str, id: int, locacion: str, pedidos: list):

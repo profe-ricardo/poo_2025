@@ -1,4 +1,4 @@
-from view.personas import chef
+from view.personas_v import chef
 
 def __main__():
     print("Aplicacion iniciada")
