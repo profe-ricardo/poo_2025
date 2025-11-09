@@ -17,10 +17,19 @@
 from hotel.profe_ricardo.config.db_config import ConexionOracle
 
 class UsuarioModel:
+    """
+        Modelo del usuario.\n
+        Métodos de creación y muestra de usuarios, realizando conexión con BD.
+    """
     def __init__(self, conexion: ConexionOracle):
         self.db = conexion
 
     def crear(self, nombre: str, telefono: int) -> bool:
+        """
+            Recibe nombre y telefono de usuario a registrar.\n
+            Genera cursor de manejo de BD para ejecución de consulta.\n
+            returns Boolean
+        """
         cursor = self.db.obtener_cursor()
         consulta = "insert into usuarios (nombre, telefono) values (:1, :2)"
 
@@ -39,6 +48,10 @@ class UsuarioModel:
                 cursor.close()
 
     def mostrar_todos(self) -> list:
+        """
+            Genera cursor de manejo de BD para ejecución de consulta.\n
+            returns lista de usuarios registrados en BD.
+        """
         cursor = self.db.obtener_cursor()
         consulta = "select nombre, telefono from usuarios"
 
