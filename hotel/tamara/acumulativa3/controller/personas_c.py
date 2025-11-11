@@ -1,4 +1,4 @@
-from  hotel.tamara.model.personas_m import UsuarioModel
+from  modelo.personas_m import UsuarioModel
 
 class UsuarioController:
     """
@@ -30,3 +30,4 @@ class UsuarioController:
             return [{ "nombre": u[0], "telefono": u[1] } for u in usuarios]
         else:
             return []
+        
