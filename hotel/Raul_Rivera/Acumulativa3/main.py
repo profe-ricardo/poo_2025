@@ -1,0 +1,37 @@
+from hotel.Raul_Rivera.config.db_config import ConexionOracle
+from hotel.Raul_Rivera.model.personas_m import UsuarioModel
+from hotel.Raul_Rivera.controller.personas_c import UsuarioController
+from hotel.Raul_Rivera.view.personas_v import UsuarioView
+
+def conectarBD():
+    """
+        Realiza conexión a BD utilizando función predefinida.
+    """
+    db = ConexionOracle("system", "Ina.2025", "localhost:1521/xe")
+    db.conectar()
+
+    return db
+
+def main():
+    """
+        Genera registro de usuario en BD conectada.\n
+        Debe existir tabla 'usuarios' con las columnas 'nombre' y 'telefono'.\n
+        Tabmién devuelve una lista de los usuarios registrados.
+    """
+    db = conectarBD()
+    modelo = UsuarioModel(db)
+    controlador = UsuarioController(modelo)
+    vista = UsuarioView()
+
+    print("Aplicacion iniciada")
+
+    ingreso = controlador.registrar_usuario('Ricardo', 912345678)
+
+    if ingreso:
+        usuarios = controlador.listar_usuarios()
+        vista.mostrar_usuarios(usuarios)
+
+    db.desconectar()
+
+if __name__ == "__main__":
+    main()
