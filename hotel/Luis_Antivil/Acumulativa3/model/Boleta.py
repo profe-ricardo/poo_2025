@@ -1,5 +1,5 @@
-from model.usuario import UsuarioModel
-from model.Clienteliente import cliente
+from model.Usuario import UsuarioModel
+from model.Cliente import cliente
 class boleta():
     def __init__(self,folio:int,cliente:cliente,usuario:(UsuarioModel)):
         self.folio=folio
