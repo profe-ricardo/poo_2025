@@ -6,15 +6,22 @@
 #def conectarBD():
 #    db = ConexionOracle("system", "Ina2025", "localhost:1521/xe")
 #    db.conectar()
+#def conectarBD():
+#    db = ConexionOracle("system", "Ina2025", "localhost:1521/xe")
+#    db.conectar()
 
 #    return db
+#    return db
 
+#def main():
+#    db = conectarBD()
 #def main():
 #    db = conectarBD()
     #modelo = UsuarioModel(db)
     #controlador = UsuarioController(modelo)
     #vista = UsuarioView()
 
+#    print("Aplicacion iniciada")
 #    print("Aplicacion iniciada")
 
     # ingreso = controlador.registrar_usuario('system', "Ina2025", "Localhost:1521/xe" )
