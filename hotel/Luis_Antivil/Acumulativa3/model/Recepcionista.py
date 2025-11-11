@@ -1,5 +1,5 @@
-from model.usuario import UsuarioModel
+from Usuario import UsuarioModel
 
 class recepcionista(): 
     def __init__(self, nombre:str,telefono:int,ubicacion:str):
-        super().
+        super().__init__()
