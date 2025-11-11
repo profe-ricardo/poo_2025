@@ -30,3 +30,5 @@ class ConexionOracle:
             self.conectar()
 
         return self.connection.cursor()
+    
+    
