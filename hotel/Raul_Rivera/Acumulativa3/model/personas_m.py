@@ -1,4 +1,5 @@
-from hotel.Raul_Rivera.Acumulativa3.config.db_config import ConexionOracle
+from config.db_config import ConexionOracle
+from model.objetos_m import habitacionModel
 
 class UsuarioModel:
     """
@@ -52,3 +53,26 @@ class UsuarioModel:
         finally:
             if cursor:
                 cursor.close()
+
+
+
+class clienteModel():
+
+    def __init__(self,nombre:str, telefono:int,nacionalidad:str, habitacion:habitacionModel):
+        super().__init__(habitacion)
+        self.nombre=nombre
+        self.telefono=telefono
+        self.nacionalidad=nacionalidad
+        self.habitacion=habitacion
+        
+
+class recepcionistaModel(UsuarioModel):
+
+    def __init__(self, nombre:str, telefono:int, ubicacion:str, conexion:ConexionOracle):
+        super().__init__(conexion)
+        self.nombre=nombre
+        self.telefono=telefono
+        self.ubicacion=ubicacion
+        self.conexion=UsuarioModel.conexion
+
+

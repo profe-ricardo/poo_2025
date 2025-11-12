@@ -1,5 +1,4 @@
-from  hotel.Raul_Rivera.model.personas_m import UsuarioModel
-
+from model.personas_m import UsuarioModel
 class UsuarioController:
     """
         Controlador del usuario.\n

@@ -1,7 +1,7 @@
-from hotel.Raul_Rivera.config.db_config import ConexionOracle
-from hotel.Raul_Rivera.model.personas_m import UsuarioModel
-from hotel.Raul_Rivera.controller.personas_c import UsuarioController
-from hotel.Raul_Rivera.view.personas_v import UsuarioView
+from config.db_config import ConexionOracle
+from model.personas_m import UsuarioModel
+from controller.personas_c import UsuarioController
+from view.personas_v import UsuarioView
 
 def conectarBD():
     """

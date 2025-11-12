@@ -1,4 +1,5 @@
 import oracledb
+
 class ConexionOracle:
     """
         Clase para conexion de BD.
