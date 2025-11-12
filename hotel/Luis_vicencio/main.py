@@ -12,23 +12,31 @@
 
 # main()
 
-from config.db_config import ConexionOracle
-# from hotel.Luis_vicencio.model.personas import UsuarioModel
-# from hotel.Luis_vicencio.controller.personas import UsuarioController
-# from hotel.Luis_vicencio.view.personas import UsuarioView
+# from config.db_config import ConexionOracle
+# #from model.personas import UsuarioModel
+# #from controller.personas import UsuarioController
+# #from view.personas import UsuarioView
 
-def conectarBD():
-    db = ConexionOracle("system", "Ina.2025", "localhost:1521/xe")
-    db.conectar()
+# def conectarBD():
+#     db = ConexionOracle("system", "vicencio", "localhost:1521/xe")
+#     db.conectar()
 
-    return db
+#     return db
 
-def main():
-    db = conectarBD()
+# def main():
+#     db = conectarBD()
 
-    print("Aplicacion iniciada")
+#     print("Aplicacion iniciada")
 
-    db.desconectar()
+#     db.desconectar()
     
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
+
+from model.objetos import ver_inventario  
+  
+def main():
+    print("aplicacion iniciada")
+    
+    
+    
