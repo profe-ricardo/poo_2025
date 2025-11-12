@@ -12,6 +12,14 @@ class recepcionista():
         self.ubicacion=ubicacion
         self.conexion=conexion
         
-    
-    
-    
+    def Crear_Recepcionista(self,nombre,telefono,ubicacion,conexion):
+        """"""
+        
+    def Modificar_Usuario(self,nombre,telefono,ubicacion,conexion):
+        """"""
+        
+    def Eliminar_Usuario(self,nombre,telefono,ubicacion,conexion):
+        """"""
+        
+    def Mostrar_Usuario(self,nombre,telefono,ubicacion,conexion):
+        """"""
