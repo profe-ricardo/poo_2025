@@ -1,5 +1,6 @@
 import re 
-from hotel.tamara.model.objetos_m import InventarioModel
+from acumulativa3.model.objetos_m import InventarioModel
+
 
 sus_keys = [
     r";", r"--", r"/\*", r"\bOR\b", r"\bAND\b", r"\bUNION\b",

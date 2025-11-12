@@ -1,4 +1,4 @@
-from config.db_config import ConexionOracle
+from hotel.tamara.acumulativa3.config.db_config import ConexionOracle
 
 
 class InventarioModel():
@@ -88,14 +88,6 @@ class InventarioModel():
                 cursor.close()
 
     def eliminar_item(self, nombre: str) -> bool:
-        """
-            Elimina el item indicado, validando que exista en la BD.
-
-            params
-            - nombre : item a eliminar
-
-            return Boolean
-        """
 
         cursor = self.db.obtener_cursor()
 
@@ -128,5 +120,9 @@ class habitacion():
         self.cantidad_personas= cantidad_personas
         self.estado = estado
 
+
 class boleta():
-    def __main__(self)
+    def __main__(self, folio: int, cliente: str, usuario: str ):
+        self.folio = folio
+        self.cliente = cliente
+        self.usuario = usuario
