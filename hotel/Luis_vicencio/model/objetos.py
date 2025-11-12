@@ -2,11 +2,12 @@ from config.db_config import ConexionOracle
 
 
 class Inventario():
-    def __init__(self,nombre: str, tipo: str, cantidad: int, precio_costo: int, conexion:):
+    def __init__(self,nombre: str, tipo: str, cantidad: int, precio_costo: int, conexion:ConexionOracle):
         self.nombre = nombre
         self.tipo = tipo
         self.cantidad = cantidad
         self.precio_costo = precio_costo
+        self.conexion = conexion
     
     def agregar_productos(self,producto:list) -> bool:
         for p in producto:
@@ -15,7 +16,7 @@ class Inventario():
     
     def eliminar_producto(self,producto:list) -> bool:
         for p in producto:
-            self.pedidos.delete(p)
+            self.pedidos.remove(p)
         return True
     
 class Habitacion():
