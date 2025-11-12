@@ -1,4 +1,4 @@
-from hotel.Luis_Antivil.config.db_config import ConexionOracle
+from hotel.Luis_Antivil.ACUMULATIVA3SI.config.db_config1 import ConexionOracle
 
 class UsuarioModel:
     """

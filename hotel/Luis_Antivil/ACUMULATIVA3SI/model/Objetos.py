@@ -1,4 +1,4 @@
-from model.Usuario import UsuarioModel
+from Usuario import UsuarioModel
 from Personas import cliente
 
 
@@ -6,10 +6,10 @@ class boleta():
     """
     se debe poder generar una boleta, actualizar, eliminar o leer lo de la boleta
     """
-    def __init__(self,folio:int,cliente:cliente,usuario:(UsuarioModel)):
+    def __init__(self,folio:int,cliente:cliente,usuario:UsuarioModel):
         self.folio=folio
         self.cliente=cliente
-        self.usuario=UsuarioModel
+        self.usuario=usuario
         
     def CrearBoleta (self,folio:int, cliente:cliente, usuario:UsuarioModel):
         cursor = self.db.obtener_cursor()
@@ -19,31 +19,45 @@ class boleta():
         """
         
         try:
-            Validar_Cliente= "Select * from Personas.cliente where nombre= :1"
+            Validar_Cliente= "Select * from Personas where nombre= :1"
             cursor.Execute(Validar_Cliente)
             cliente_existe=len(cursor.fetchall())>0
             
-            Validar_Usuario= "Select * from Usuario.UsuarioModel where nombre= :1"
+            Validar_Usuario= "Select * from Usuario where nombre= :1"
             cursor.Execute(Validar_Usuario)
             usuario_existe=len(cursor.fetchall())>0
             
             if cliente_existe and usuario_existe:
+
+                generar_boleta="insert into boleta (folio, cliente, usuario) values (:1 , :2 , :3)"
+                cursor.execute(generar_boleta, (folio, cliente, usuario))
+                self.db.connection.commit()
+                print (f"boleta generada exitosamente")
                 return True
         
             elif not cliente_existe:
                 print (f"{cliente} no se encuentra ingresado")
                 return False
             else:
-                print (f"{UsuarioModel} no se encuentra la sesion")
+                print (f"{usuario} no se encuentra la sesion")
                 return False
         except Exception as e:
             print ("error al ingresar")
             return False
+        finally:
+            if cursor:
+                cursor.close()
         
-        generar_boleta="insert into boleta (folio, cliente, usuario) values (:1 , :2 , :3)"
-        cursor.execute(generar_boleta)
-        
-        
+    def Editar_Boleta (self, folio:int, *datos:tuple)->bool:
+        cursor=self.db.obtener_cursor()
+
+
+
+
+
+
+
+
 class inventario():
     """
     se debe poder generar un inventario, actualizar, eliminar o leer lo del inventario
@@ -91,6 +105,7 @@ class inventario():
             if len(cursor.fetchall()) >0:
                 if datos:
                     consulta_update = "update inventario set nombre = 1:, cantidad= 2:, tipo= 3:, precio_costo= 4: where nombre= 5:"
+                    cursor.execute(consulta_update,(nombre,datos[0], datos[1],datos[2],nombre))
                     self.db.connection.commit()
                     print(f"[INFO]:{nombre} editado correctamente")
                     return True
