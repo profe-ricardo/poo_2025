@@ -1,10 +1,9 @@
 from model.objetos import Inventario
 
 class inventario(Inventario):
-    def __init__(self,nombre: str, tipo: str, cantidad: int, precio_costo: int):
-        super().__init__(nombre, tipo, cantidad, precio_costo)
+    def __init__()
+    
+from model.objetos import Habitacion
 
-    def ver_inventario(self, productos: list) -> bool:
-        self.productos(productos)
-        self.productos.sort()
-        return True 
+def asignar_habitacion(self,habitacion: int)
+    
