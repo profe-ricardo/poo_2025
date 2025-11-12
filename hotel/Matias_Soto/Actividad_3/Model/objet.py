@@ -20,7 +20,7 @@ class InventoryModel:
               Validation = "select * from inventory where Name = :1"
               cursor.execute(Validation, (Name,))
 
-              if cursor.fetchall() > 0:
+              if len(cursor.fetchall()) > 0:
                    print(f"[####] El producto {Name} ya existe en el inventario")
 
                    return False
@@ -47,7 +47,7 @@ class InventoryModel:
               Validation = "select * from inventory where Name = :1"
               cursor.execute(Validation, (Name,))
 
-              if cursor.fetchall() == 0:
+              if len(cursor.fetchall()) == 0:
                    print(f"[####] El producto {Name} no existe en el inventario")
 
                    return False
@@ -139,7 +139,7 @@ class RoomModel:
                Validation = "select * from rooms where Number = :1"
                cursor.execute(Validation, (Number,))
 
-               if cursor.fetchall() > 0:
+               if len(cursor.fetchall()) > 0:
                     print(f"[####] La habitación {Number} ya existe")
 
                     return False
@@ -187,7 +187,7 @@ class RoomModel:
                Validation = "select * from rooms where Number = :1"
                cursor.execute(Validation, (Number,))
 
-               if cursor.fetchall() == 0:
+               if len(cursor.fetchall()) == 0:
                     print(f"[####] La habitación {Number} no existe")
 
                     return False
@@ -214,6 +214,7 @@ class RoomModel:
           try:
                valdation = "select * from rooms where Number = :1"
                cursor.execute(valdation,(Number,))
+
                if len(cursor.fetchall()) == 0:
                     print(f"[####] La habitación {Number} no existe")
 
@@ -247,7 +248,7 @@ class Ticket():
                Validation = "select * from boleta where Folio = :1"
                cursor.execute(Validation, (Folio,))
 
-               if cursor.fetchall() == 0:
+               if len(cursor.fetchall()) == 0:
                     insert = "insert into boletas(Folio, Client, Usuario) values (:1, :2, :3)"
                     cursor.execute(insert, (Folio, Client, Usuario))
                     self.connection.connection.commit()
@@ -275,7 +276,7 @@ class Ticket():
                Validation = "select * from boletas where Folio =:1"
                cursor.execute(Validation,(Folio,))
 
-               if cursor.fetchall() == 0:
+               if len(cursor.fetchall()) == 0:
                     print(f"[####] La boleta {Folio} no existe")
 
                     return False
