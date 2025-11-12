@@ -215,3 +215,4 @@ class Boleta:
         cur.close()
         return Boleta(r[0], r[1], r[2], r[3]) if r else None
     
+    

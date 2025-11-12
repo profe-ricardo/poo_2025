@@ -1,48 +1,15 @@
-#from config.db_config import ConexionOracle
-#from hotel.Luis_carrasco.model.personas_m import UsuarioModel
-#from hotel.Luis_carrasco.controller.personas_c import UsuarioController
-#from hotel.Luis_carrasco.view.personas_v import UsuarioView
-
-#def conectarBD():
-#    db = ConexionOracle("system", "Ina2025", "localhost:1521/xe")
-#    db.conectar()
-#def conectarBD():
-#    db = ConexionOracle("system", "Ina2025", "localhost:1521/xe")
-#    db.conectar()
-
-#    return db
-#    return db
-
-#def main():
-#    db = conectarBD()
-#def main():
-#    db = conectarBD()
-    #modelo = UsuarioModel(db)
-    #controlador = UsuarioController(modelo)
-    #vista = UsuarioView()
-
-#    print("Aplicacion iniciada")
-#    print("Aplicacion iniciada")
-
-    # ingreso = controlador.registrar_usuario('system', "Ina2025", "Localhost:1521/xe" )
-
-    #if ingreso:
- #       usuarios = controlador.listar_usuarios()
-  #      vista.mostrar_usuarios(usuarios)
-
-    #db.desconectar()
-
-#if __name__ == "__main__":
-#    main()
-    
-    
-
 from config.db_config import ConexionOracle
 from models.models import Inventario, Habitacion, Cliente, Usuario, Recepcionista, Boleta
+from hotel.Luis_carrasco.model.personas_m import UsuarioModel
+from hotel.Luis_carrasco.controller.personas_c import UsuarioController
+from hotel.Luis_carrasco.view.personas_v import UsuarioView
+
+
+
 
 def conectarBD():
     
-    db = ConexionOracle("system", "Ina2025", "localhost:1521/xe")
+    db = ConexionOracle("system", "ina2025", "localhost:1521/xe")
     if not db.conectar():
         raise SystemExit("No se pudo conectar a la base de datos Oracle.")
     return db
@@ -84,7 +51,4 @@ def ejemplo():
 
     db.desconectar()
 
-if __name__ == "__main__":
-    ejemplo()
-
-
+if __name__ == "__main__":    ejemplo()

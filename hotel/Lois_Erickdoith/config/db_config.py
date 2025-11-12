@@ -2,9 +2,9 @@ import oracledb
 
 class ConexionOracle:
     def __init__(self, usuario: str, password: str, url: str):
-        self.usuario = usuario
-        self.password = password
-        self.url = url
+        self.usuario = system
+        self.password = ina2025
+        self.url = localhost:1521/xe
         self.connection = None
 
     def conectar(self):
