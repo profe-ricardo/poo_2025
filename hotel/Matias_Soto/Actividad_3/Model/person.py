@@ -1,11 +1,23 @@
 from config.db_confing import Conexionoracle
 
-class client():
-    def __init__(self, Name: str, Phone: int, Location:str, Room: str ):
+class clientMoldel:
+    def __init__(self, Name: str, Phone: int, Location:str, Room: str, connection = Conexionoracle):
        self.Name = Name
        self.Phone = Phone
        self.Location = Location
        self.Room = Room
+       self.connection = connection
+
+    def register_client(self, Name: str, Phone: int, Location: str, Room: str) -> bool:
+
+        cursor = self.connection.get_cursor()
+
+        try:
+            Client = "inset into clients (Name, Phone, Location, Room) values (:1, :2, :3, :4)"
+            cursor.execute(Client, (Name, Phone, Location, Room))
+            self.connection.connection.commit()
+
+            if cursor.fetchall() == 0:
 
 class UsuarioModel:
     """
