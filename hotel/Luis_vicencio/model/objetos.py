@@ -1,12 +1,17 @@
 from config.db_config import ConexionOracle
 
 
+<<<<<<< HEAD
 class InventarioModel():
+=======
+class Inventario():
+>>>>>>> ea8d887638b4be4adf2a66cbe5502ba5324ed06f
     def __init__(self,nombre: str, tipo: str, cantidad: int, precio_costo: int, conexion:ConexionOracle):
         self.nombre = nombre
         self.tipo = tipo
         self.cantidad = cantidad
         self.precio_costo = precio_costo
+<<<<<<< HEAD
         self.conexion = conexion
         
     def guardar_item(self,nombre, tipo, cantidad, precio_costo) -> bool:
@@ -117,6 +122,28 @@ class InventarioModel():
     
 class HabitacionModel():
     def __init__(self,numero: int, cantidad_de_personas: int, estado: str,conexion: ConexionOracle):
+=======
+        self.producto = []
+    
+    def agregar_productos(self, producto:list) -> bool:
+        for p in producto:
+            self.producto.append(p)
+        self.cantidad = len(self.agregar_productos)
+        print(f"Modelo: productos {producto} agregados")
+        return True
+    
+    def eliminar_producto(self,producto_a_eliminar:list) -> bool:
+        for p in producto_a_eliminar:
+            try:
+                self.producto.remove(p)
+            except ValueError:
+                print(f"ADVERTENCIA, el producto {p} no se encuentra en el inventario")
+                
+        return True
+    
+class Habitacion():
+    def __init__(self,numero: int, cantidad_de_personas: int, estado: str):
+>>>>>>> ea8d887638b4be4adf2a66cbe5502ba5324ed06f
         self.numero = numero
         self.cantidad_de_personas = cantidad_de_personas
         self.estado = estado
