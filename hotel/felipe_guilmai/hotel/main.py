@@ -5,3 +5,6 @@ def __main__():
     print("aplicacion ejecutandose")
 
 def controlinventario(): 
+ pass
+
+#Prueba
