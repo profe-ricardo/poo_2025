@@ -1,14 +1,4 @@
-# from hotel.profe_ricardo.view.personas_v import chef
-
-# def main():
-#     print("Aplicacion iniciada")
-#     chefcito = chef('Remi', 1, 'Paris', ['Ratatoullie'])
-
-#     print(chefcito.ver_pedidos())
-#     print(chefcito.recibir_pedido(['Bebida', 'Completo', 'Pie de limon']))
-#     print(chefcito.ver_pedidos())
-
-from hotel.profe_ricardo.config.db_config import ConexionOracle
+from hotel.profe_ricardo.config.db_config import ConexionOracle, validar_tablas
 from hotel.profe_ricardo.model.personas_m import UsuarioModel
 from hotel.profe_ricardo.controller.personas_c import UsuarioController
 from hotel.profe_ricardo.view.personas_v import UsuarioView
@@ -20,6 +10,8 @@ def conectarBD():
     db = ConexionOracle("system", "Ina.2025", "localhost:1521/xe")
     db.conectar()
 
+    validar_tablas(db)
+
     return db
 
 def main():
@@ -29,19 +21,21 @@ def main():
         Tabmién devuelve una lista de los usuarios registrados.
     """
     db = conectarBD()
-    modelo = UsuarioModel(db)
-    controlador = UsuarioController(modelo)
-    vista = UsuarioView()
+    
+    try:
+        modelo = UsuarioModel(db)
+        controlador = UsuarioController(modelo)
+        vista = UsuarioView()
 
-    print("Aplicacion iniciada")
+        print("Aplicacion iniciada")
 
-    ingreso = controlador.registrar_usuario('Ricardo', 912345678)
+        ingreso = controlador.registrar_usuario('Ricardo', 912345678)
 
-    if ingreso:
-        usuarios = controlador.listar_usuarios()
-        vista.mostrar_usuarios(usuarios)
-
-    db.desconectar()
+        if ingreso:
+            usuarios = controlador.listar_usuarios()
+            vista.mostrar_usuarios(usuarios)
+    finally:
+        db.desconectar()
 
 if __name__ == "__main__":
     main()
