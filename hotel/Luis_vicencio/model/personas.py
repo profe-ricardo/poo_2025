@@ -181,4 +181,105 @@ class UsuarioModel:
 class recepcionista(UsuarioModel):
     def __init__(self,nombre: str, telefono:int, ubicacion: str):
         super().__init__(nombre, telefono, ubicacion)
+
+    def guardar_item(self, nombre: str, telefono: int, ubicacion: str) -> bool:
+        
+        cursor = self.conexion.obtener_cursor()
+
+        try:
+            validacion = "select * from recepcionistas where nombre = :1"
+            cursor.execute(validacion, (nombre,))
+            if len(cursor.fetchall()) > 0:
+                print(f"[ERROR]: {nombre} ya esta asignado")
+                return False
+            else:
+                consulta_insert = "insert into recepcionistas(nombre, telefono, ubicacion) values (:1, :2, :3)"
+                cursor.execute(consulta_insert, (nombre, telefono, ubicacion))
+                self.conexion.connection.commit()
+                print(f"[INFO]: {nombre} agregado correctamente")
+
+                return True
+        except Exception as e:
+            print(f"[ERROR]: Error al ingresar a {nombre} -> {e}")
+
+            return False
+        finally:
+            if cursor:
+                cursor.close()
+    
+    def editar_item(self, nombre: int, *datos: tuple) -> bool:
+        cursor = self.conexion.obtener_cursor()
+        try:
+            validacion = "select * from recepcionistas where nombre = :1"
+            cursor.execute(validacion, (nombre,))
+            if len(cursor.fetchall()) > 0:
+                if datos:
+                    consulta_update = "update recepcionistas set nombre = :1, telefono = :2, ubicacion = :3 where nombre = :4"
+                    cursor.execute(consulta_update,(nombre,datos[0], datos[1], datos[2], nombre,))
+                    print(f"[INFO]: {nombre} editado correctamente")
+
+                    return True
+                else:
+                    print(f"[ERROR]: Sin datos para {nombre}")
+
+                    return False
+            else:
+                print(f"[ERROR]: {nombre} no existe en la tabla recepcionistas")
+
+                return False
+        except Exception as e:
+            print(f"[ERROR]: Error al editar a {nombre} -> {e}")
+
+            return False
+        
+        finally:
+            if cursor:
+                cursor.close()
+
+    def mostrar_items(self) -> list:
+
+        cursor = self.conexion.obtener_cursor()
+        
+        try:
+            consulta = "select nombre, telefono, ubicacion from recepcionistas"
+            cursor.execute(consulta)
+            datos = cursor.fetchall()
+
+            if len(datos) > 0:
+                return datos
+            else:
+                print("[INFO]: Sin datos encontrados para recepcionistas")
+                return []
+        except Exception as e:
+            print(f"[ERROR]: error al obtener items desde BD -> {e}")
+            return []
+        
+        finally:
+            if cursor:
+                cursor.close()
+    def eliminar_item(self, nombre: str) -> bool:
+        cursor = self.conexion.obtener_cursor()
+        try:
+            validacion = "select * from clientes where numero = :1"
+            cursor.execute(validacion,(nombre,))
+
+            if len(cursor.fetchall()) > 0:
+                consulta_delete = "delete from clientes where nombre = :5"
+                cursor.execute(consulta_delete, (nombre,))
+                self.conexion.connection.commit()
+                print(f"[INFO]:recepcionista {nombre} eliminado correctamente")
+
+                return True
+            else:
+                print(f"[ERROR]:recepcionista {nombre} no existe en la tabla recepcionistas")
+
+                return False
+        except Exception as e:
+            print(f"[ERROR]: Error al eliminar recepcionista {nombre} -> {e}")
+
+            return False
+        
+        finally:
+            if cursor:
+                cursor.close()
         
