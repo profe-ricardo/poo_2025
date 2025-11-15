@@ -13,11 +13,57 @@ class clientMoldel:
         cursor = self.connection.get_cursor()
 
         try:
-            Client = "inset into clients (Name, Phone, Location, Room) values (:1, :2, :3, :4)"
-            cursor.execute(Client, (Name, Phone, Location, Room))
-            self.connection.connection.commit()
+            Validation = "select * from clients where Name = :1"
+            cursor.execute(Validation, (Name,))
 
-            if cursor.fetchall() == 0:
+            if cursor.fetchall() > 0:
+                print(f"[####] El cliente con nombre {Name} ya existe.")
+
+                return False
+            else:
+                Client = "insert into clients (Name, Phone, Location, Room) values (:1, :2, :3, :4)"
+                cursor.execute(Client, (Name, Phone, Location, Room))
+                self.connection.connection.commit()
+                print(f"[####] Cliente {Name} ingresado correctamente")
+
+                return True
+        except Exception as e:
+            print(f"[####] No se puede ingresar el cliente -> {e}")
+            return False
+        
+        finally:
+            if cursor:
+                cursor.close()
+    
+    def edit_client(self, Name: str, *Data: tuple) -> bool:
+
+        cursor =  self.connection.get_cursor()
+
+        try:
+            Validation = "select * from clients where Name = :1"
+            cursor.execute(Validation, (Name,))
+
+            if cursor.fetchall()== 0:
+                print(f"[####] El cliente con nombre {Name} no existe")
+
+                return False
+            else:
+                update = "update client set Name = :1, Phone = :2, Location = :3, Room = :4 where Name = :5"
+                cursor.execute(update,(Name, Data[0], Data[1], Data[2], Name))
+                self.connection.connection.commit()
+                print(f"[####] Cliente {Name} modificado correctamente")
+
+                return True
+        except Exception as e:
+            print(f"[####] No se puede modificar el cliente -> {e}")
+            return False
+        finally:
+            if cursor:
+                cursor.close()
+                
+
+        
+                
 
 class UsuarioModel:
     """
