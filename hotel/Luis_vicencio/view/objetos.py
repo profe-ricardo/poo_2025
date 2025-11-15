@@ -1,22 +1,41 @@
-from model.objetos import Inventario
+class InventarioView():
+    
+    @staticmethod
 
-class inventario(Inventario):
-    def __init__(self,nombre: str, tipo: str, cantidad: int, precio_costo: int):
-        super().__init__(nombre, tipo, cantidad, precio_costo)
+    def mostrar_inventario(inventario: list) -> None:
+        if len(inventario) > 0:
+            print("\n- Lista de inventario -")
+            
+            for u in inventario:
+                print(f"--- Nombre: {u['nombre']} | tipo: {u['tipo']} | cantidad: {u['cantidad']} | precio_costo: {u['precio_costo']}")
+                
+        else:
+            print("[ERROR]: Sin productos registrados") 
+            
+class HabitacionView():
+    
+    @staticmethod
 
-    def ver_inventario(self, productos: list) -> bool:
-        return self.productos(productos) 
-
-from config.db_config import ConexionOracle
-
-class inventario(Inventario):
-    def __init__(self,nombre: str, tipo: str, cantidad: int, precio_costo: int, conexion: ConexionOracle):
-        super().__init__(nombre, tipo, cantidad, precio_costo, conexion)
+    def mostrar_habitacion(habitaciones: list) -> None:
+        if len(habitaciones) > 0:
+            print("\n- Lista de habitaciones -")
+            
+            for u in habitaciones:
+                print(f"--- Numero: {u['numero']} | cantidad_de_personas: {u['cantidad_de_personas']} | estado: {u['estado']} ")
+                
+        else:
+            print("[ERROR]: Sin habitaciones registrados")
+            
+    class BoletasView():
         
+    @staticmethod
 
-    def ver_inventario(self) -> bool:
-        try:
-            self.productos.sort()
-            return True
-        
-
+    def mostrar_boletas(Boletas: list) -> None:
+        if len(Boletas) > 0:
+            print("\n- Lista de Boletas -")
+            
+            for u in Boletas:
+                print(f"--- Folio: {u['folio']} | cliente: {u['cliente']} | usuario: {u['usuario']}")
+                
+        else:
+            print("[ERROR]: Sin Boletas registrados")

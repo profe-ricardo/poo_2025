@@ -31,5 +31,39 @@ class clienteview():
     @staticmethod
 
     def mostrar_clientes(clientes: list) -> None:
-        if len(clientes)
+        if len(clientes) > 0:
+            print("\n- Lista de clientes -")
+            
+            for u in clientes:
+                print(f"--- Nombre: {u['nombre']} | telefono: {u['telefono']} | nacionalidad: {u['nacionalidad']} | habitacion: {u['habitacion']} ")
+        else:
+            print("[ERROR]: Sin clientes registrados")
+    
+class recepcionistaView():
+    
+    @staticmethod
+
+    def mostrar_recepcionistas(recepcionistas: list) -> None:
+        if len(recepcionistas) > 0:
+            print("\n- Lista de recepcionistas -")
+            
+            for u in recepcionistas:
+                print(f"--- Nombre: {u['nombre']} | telefono: {u['telefono']} | ubicacion: {u['ubicacion']}")
+                
+        else:
+            print("[ERROR]: Sin recepcionistas registrados")   
+            
+class clienteview():
+    
+    @staticmethod
+
+    def mostrar_clientes(clientes: list) -> None:
+        if len(clientes) > 0:
+            print("\n- Lista de clientes -")
+            
+            for u in clientes:
+                print(f"--- Nombre: {u['nombre']} | telefono: {u['telefono']} | nacionalidad: {u['nacionalidad']} | habitacion: {u['habitacion']} ")
+        else:
+            print("[ERROR]: Sin clientes registrados")
+                
 

@@ -224,7 +224,7 @@ class HabitacionModel():
             if cursor:
                 cursor.close()
         
-class Boleta():
+class BoletaModel():
     def __init__(self, folio: int, cliente:str, usuario:str, conexion:ConexionOracle):
         self.folio = folio
         self.cliente = cliente

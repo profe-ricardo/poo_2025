@@ -2,6 +2,7 @@ from model.personas import chef
 from model.personas import UsuarioModel, clienteModel, recepcionistaModel
 
 
+
 class Chef(chef):
     def __init__(self, nombre: str, id: int, locacion: str, pedidos: list):
         super().__init__(nombre, id, locacion, pedidos)
@@ -62,12 +63,29 @@ class clienteController():
             return []
         
 class recepcionistaController():
+    
     def __init__(self, modelo: recepcionistaModel):
         self.modelo = modelo
 
     def registrar_recepcionista(self, nombre:str, telefono: int, ubicacion: str) -> bool:
         if not nombre or not telefono or not ubicacion:
             print("[ERROR]: Datos faltantes para registro de recepcionista")
+            return False
+        return self.modelo.crear(nombre, telefono, ubicacion)
+    
+    def listar_recepcionistas(self) -> list:
+        recepcionistas = self.modelo.mostrar_todos()
+        if len(recepcionistas) > 0:
+            return [{ "nombre": u[0], "telefono": u[1], "ubicacion": u[2] } for u in recepcionistas]
+        else:
+            return []
+
+
+        
+        
+
+                
+        
 
         
         

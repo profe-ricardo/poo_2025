@@ -17,11 +17,12 @@ class chef():
         return self.pedidos
     
 class clienteModel():
-    def __init__(self, nombre: str, telefono: int, nacionalidad: str, habitacion: int):
+    def __init__(self, nombre: str, telefono: int, nacionalidad: str, habitacion: int, conexion: ConexionOracle):
         self.nombre = nombre
         self.telefono = telefono
         self.nacionalidad = nacionalidad
         self.habitacion = habitacion
+        self.conexion = conexion
 
     def guardar_item(self, nombre: str, telefono: int, nacionalidad: str, habitacion: int) -> bool:
         
