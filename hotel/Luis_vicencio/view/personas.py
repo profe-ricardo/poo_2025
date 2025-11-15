@@ -1,14 +1,14 @@
-from controller.personas import Chef
+#from controller.personas import Chef
 
 
-class chef(Chef):
-    def __init__(self,nombre: str, id: int, locacion: str, pedidos: list):
-        super().__init__(nombre, id, locacion, pedidos)
+# class chef(Chef):
+#     def __init__(self,nombre: str, id: int, locacion: str, pedidos: list):
+#         super().__init__(nombre, id, locacion, pedidos)
 
-    def recibir_pedido(self, pedido: list) -> bool:
-        return self.procesar_pedido(pedido)
-    
-class UsuarioView:
+#     def recibir_pedido(self, pedido: list) -> bool:
+#         return self.procesar_pedido(pedido)
+
+class UsuarioView():
     """
         Vista del usuario, muestra información en pantalla.
     """
@@ -25,6 +25,11 @@ class UsuarioView:
                 print(f"--- Nombre: {u['nombre']} | Telefono: {u['telefono']}")
         else:
             print("[ERROR]: Sin usuarios registrados")
-       
-        
-    
+
+class clienteview():
+
+    @staticmethod
+
+    def mostrar_clientes(clientes: list) -> None:
+        if len(clientes)
+

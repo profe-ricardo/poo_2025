@@ -16,7 +16,7 @@ class chef():
     def ver_pedidos(self) -> list:
         return self.pedidos
     
-class cliente():
+class clienteModel():
     def __init__(self, nombre: str, telefono: int, nacionalidad: str, habitacion: int):
         self.nombre = nombre
         self.telefono = telefono
@@ -178,7 +178,7 @@ class UsuarioModel:
             if cursor:
                 cursor.close()
 
-class recepcionista(UsuarioModel):
+class recepcionistaModel(UsuarioModel):
     def __init__(self,nombre: str, telefono:int, ubicacion: str):
         super().__init__(nombre, telefono, ubicacion)
 

@@ -1,5 +1,5 @@
 from model.personas import chef
-from model.personas import UsuarioModel
+from model.personas import UsuarioModel, cliente, recepcionista
 
 
 class Chef(chef):
@@ -42,5 +42,7 @@ class UsuarioController:
         else:
             return []
         
-
+class clienteController():
+    def __init__(self, modelo: clienteModel):
+        
     
