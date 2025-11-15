@@ -1,4 +1,4 @@
-from hotel.profe_ricardo.config.db_config import ConexionOracle
+from hotel.Hector_Beyer.config.db_config import ConexionOracle
 
 class InventarioModel:
     """
