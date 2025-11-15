@@ -1,5 +1,5 @@
 from model.personas import chef
-from model.personas import UsuarioModel, cliente, recepcionista
+from model.personas import UsuarioModel, clienteModel, recepcionistaModel
 
 
 class Chef(chef):
@@ -44,5 +44,31 @@ class UsuarioController:
         
 class clienteController():
     def __init__(self, modelo: clienteModel):
+        self.modelo = modelo
+
+    def registrar_cliente(self, nombre:str, telefono: int, nacionalidad: str, habitacion: str) -> bool:
+        if not nombre or telefono or not nacionalidad or not habitacion :
+            print("[ERROR]: Datos faltantes para registro de clientes ")
+            return False
+        return self.modelo.crear(nombre, telefono, nacionalidad, habitacion)
+    
+    def listar_clientes(self) -> list:
+
+        clientes = self.modelo.mostrar_todos()
+
+        if len(clientes) > 0:
+            return[{"nombre": u[0], "telefono": u[1], "nacionalidad": u[2], "habitacion": u[3]} for u in clientes]
+        else:
+            return []
+        
+class recepcionistaController():
+    def __init__(self, modelo: recepcionistaModel):
+        self.modelo = modelo
+
+    def registrar_recepcionista(self, nombre:str, telefono: int, ubicacion: str) -> bool:
+        if not nombre or not telefono or not ubicacion:
+            print("[ERROR]: Datos faltantes para registro de recepcionista")
+
+        
         
     
