@@ -5,7 +5,7 @@ class InventoryModel:
     # Crear la conexion
 
 
-    def __init__(self, Name: str, Tipe: str, Quantity: str, Cost_price: float, connection = Conexionoracle):
+    def __init__(self, Name: str, Tipe: str, Quantity: int, Cost_price: float, connection = Conexionoracle):
         self.Name = Name
         self.Tipe = Tipe
         self.Quantity = Quantity
@@ -20,7 +20,7 @@ class InventoryModel:
               Validation = "select * from inventory where Name = :1"
               cursor.execute(Validation, (Name,))
 
-              if cursor.fetchall() > 0:
+              if len(cursor.fetchall()) > 0:
                    print(f"[####] El producto {Name} ya existe en el inventario")
 
                    return False
@@ -47,7 +47,7 @@ class InventoryModel:
               Validation = "select * from inventory where Name = :1"
               cursor.execute(Validation, (Name,))
 
-              if cursor.fetchall() == 0:
+              if len(cursor.fetchall()) == 0:
                    print(f"[####] El producto {Name} no existe en el inventario")
 
                    return False
@@ -131,7 +131,7 @@ class RoomModel:
             self.Tipe = Tipe
             self.connection = connection
 
-     def Add_room(self, Number: str, Number_of_people: int, Tipe: str) -> bool:
+     def Add_room(self, Number: int, Number_of_people: int, Tipe: str) -> bool:
           
           cursor = self.connection.get_cursor()
 
@@ -139,7 +139,7 @@ class RoomModel:
                Validation = "select * from rooms where Number = :1"
                cursor.execute(Validation, (Number,))
 
-               if cursor.fetchall() > 0:
+               if len(cursor.fetchall()) > 0:
                     print(f"[####] La habitación {Number} ya existe")
 
                     return False
@@ -187,7 +187,7 @@ class RoomModel:
                Validation = "select * from rooms where Number = :1"
                cursor.execute(Validation, (Number,))
 
-               if cursor.fetchall() == 0:
+               if len(cursor.fetchall()) == 0:
                     print(f"[####] La habitación {Number} no existe")
 
                     return False
@@ -214,6 +214,7 @@ class RoomModel:
           try:
                valdation = "select * from rooms where Number = :1"
                cursor.execute(valdation,(Number,))
+
                if len(cursor.fetchall()) == 0:
                     print(f"[####] La habitación {Number} no existe")
 
@@ -232,14 +233,14 @@ class RoomModel:
                if cursor:
                     cursor.close()
                
-class Ticket():
-      def __init__(self,Folio: int, Client: str, Usuario: str, connection = Conexionoracle):
+class TicketModel:
+      def __init__(self,Folio: int, Client: str, User: str, connection = Conexionoracle):
             self.Folio = Folio
             self.Client = Client
-            self.Usuario = Usuario
+            self.User = User
             self.connection = connection
 
-      def Add_Ticket(self, Folio: int, Client: str, Usuario: str) -> bool:
+      def Add_Ticket(self, Folio: int, Client: str, User: str) -> bool:
            
           cursor = self.connection.get_cursor()
 
@@ -247,9 +248,9 @@ class Ticket():
                Validation = "select * from boleta where Folio = :1"
                cursor.execute(Validation, (Folio,))
 
-               if cursor.fetchall() == 0:
+               if len(cursor.fetchall()) == 0:
                     insert = "insert into boletas(Folio, Client, Usuario) values (:1, :2, :3)"
-                    cursor.execute(insert, (Folio, Client, Usuario))
+                    cursor.execute(insert, (Folio, Client, User))
                     self.connection.connection.commit()
                     print(f"[####] La boleta {Folio} fue agregada correctamente")
 
@@ -275,12 +276,12 @@ class Ticket():
                Validation = "select * from boletas where Folio =:1"
                cursor.execute(Validation,(Folio,))
 
-               if cursor.fetchall() == 0:
+               if len(cursor.fetchall()) == 0:
                     print(f"[####] La boleta {Folio} no existe")
 
                     return False
                else: 
-                    update = "update boletas set Folio = :1, Client = :2, Usuario = :3 where Folio = :4"
+                    update = "update boletas set Folio = :1, Client = :2, User = :3 where Folio = :4"
                     cursor.execute(update, (Folio, Data[0], Data[1], Folio))
                     self.connection.connection.commit()
                     print(f"[####] La boleta {Folio} fue actualizada correctamente")
@@ -298,7 +299,7 @@ class Ticket():
           cursor = self.connection.get_cursor()
            
           try:
-               Visual = "select Folio, Client, Usuario from boletas"
+               Visual = "select Folio, Client, User from boletas"
                cursor.execute(Visual)
                data = cursor.fetchall()
                
