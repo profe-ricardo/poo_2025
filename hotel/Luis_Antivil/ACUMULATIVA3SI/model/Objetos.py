@@ -50,9 +50,30 @@ class boleta():
         
     def Editar_Boleta (self, folio:int, *datos:tuple)->bool:
         cursor=self.db.obtener_cursor()
+        try:
+            consultar_boleta= "select * from boleta where nombre = :1"
+            cursor.execute(consultar_boleta,(folio,))
 
-
-
+            if len(cursor.fetchall()) >0:
+                if datos:
+                    consulta_update = "update inventario set folio=1:, cliente=2:, usuario=3: where nombre=5"
+                    cursor.excecute(consulta_update,(folio, datos[0], datos[1], datos[2], folio))
+                    self.db.connection.commit(0)
+                    print(f"[info:{folio} editado correctamente]")
+                    return True 
+                
+                else:
+                    print(f"[ERROR]: sin datos ingresados para {folio}")
+                    return False
+            else:
+                print(f"[ERROR]: {folio} no existe en la tabla")
+                return False
+            
+        except exception as e:
+            print (f"[Error]: error al editar {folio}->{e}")
+        finally:
+            if cursor:
+                cursor.close()
 
 
 
