@@ -1,5 +1,7 @@
 import re 
-from acumulativa3.model.objetos_m import InventarioModel
+from model.objetos_m import InventarioModel
+from model.objetos_m import HabitacionModel
+from model.objetos_m import BoletaModel
 
 
 sus_keys = [
@@ -11,8 +13,8 @@ sus_keys = [
 patron = re.compile("|".join(sus_keys), re.IGNORECASE)
 
 class InventarioController:
-    def __init__(self, modelo: InventarioModel):
-        self.modelo = modelo
+    def __init__(self, model: InventarioModel):
+        self.model = model
 
     def registrar_inventario(self, nombre: str, tipo: str, cantidad: int, precio_costo: float):
 
@@ -22,4 +24,32 @@ class InventarioController:
             return False
         
         else:
-            return self.modelo.guardar_item(nombre, tipo, cantidad, precio_costo)
+            return self.model.guardar_item(nombre, tipo, cantidad, precio_costo)
+
+class HabitacionController:
+    def __init__(self, model: HabitacionModel):
+        self.model = model
+
+    def registrar_habitacion(self, numero: int, huespedes: int, estado: str):
+        
+        if patron.search(estado):
+            print("[ERROR]: No se puede ingresar código SQL en los string.")
+
+            return False
+        
+        else:
+            return self.model.guardar_item(numero, huespedes, estado)
+        
+class BoletaModel:
+    def __init__(self, model : BoletaModel):
+        self.model = model
+
+    def registrar_boleta(self, folio: int, cliente: str, usuario:str):
+
+        if patron.search(cliente) or patron.search(usuario):
+            print("[ERROR]: No se puede ingresar código SQL en los string.")
+
+            return False
+        
+        else:
+            return self.model.guardar_item(folio, cliente, usuario)
