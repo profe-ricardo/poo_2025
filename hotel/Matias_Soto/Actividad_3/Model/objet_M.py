@@ -5,7 +5,7 @@ class InventoryModel:
     # Crear la conexion
 
 
-    def __init__(self, Name: str, Tipe: str, Quantity: str, Cost_price: float, connection = Conexionoracle):
+    def __init__(self, Name: str, Tipe: str, Quantity: int, Cost_price: float, connection = Conexionoracle):
         self.Name = Name
         self.Tipe = Tipe
         self.Quantity = Quantity
@@ -131,7 +131,7 @@ class RoomModel:
             self.Tipe = Tipe
             self.connection = connection
 
-     def Add_room(self, Number: str, Number_of_people: int, Tipe: str) -> bool:
+     def Add_room(self, Number: int, Number_of_people: int, Tipe: str) -> bool:
           
           cursor = self.connection.get_cursor()
 
@@ -233,7 +233,7 @@ class RoomModel:
                if cursor:
                     cursor.close()
                
-class Ticket():
+class TicketModel:
       def __init__(self,Folio: int, Client: str, Usuario: str, connection = Conexionoracle):
             self.Folio = Folio
             self.Client = Client

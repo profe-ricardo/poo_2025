@@ -171,7 +171,7 @@ class UsuarioModel:
             if cursor:
                 cursor.close()
 
-class Reception(UsuarioModel):
+class ReceptionModel(UsuarioModel):
     def __init__(self, Name: str, Phone: int, location: str, conexion):
         super().__init__(conexion)
 
