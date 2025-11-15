@@ -2,12 +2,11 @@ from config.db_config import ConexionOracle
 from model.personas_m import UsuarioModel
 from controller.personas_c import UsuarioController
 from view.personas_v import UsuarioView
-from view.objetos_v import BoletaView
 def conectarBD():
     """
         Realiza conexión a BD utilizando función predefinida.
     """
-    db = ConexionOracle("SYSTEM", "Jeloum3n12", "localhost:1521/XEPDB1")
+    db = ConexionOracle("System", "Ina.2025", "localhost:1521/xe")
     db.conectar()
     # if db.connection:
     #     db.crear_tablas()  # asegura que las tablas estén listas

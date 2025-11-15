@@ -49,24 +49,27 @@ class ClienteController:
 
 
 class RecepcionistaController:
-    """
-        Controlador del recepcionista.
-        Maneja operaciones relacionadas con recepcionistas.
-    """
     def __init__(self, modelo: recepcionistaModel):
         self.modelo = modelo
 
-    def registrar_recepcionista(self, nombre: str, telefono: int, ubicacion: str, conexion: ConexionOracle) -> recepcionistaModel:
-        if not nombre or not telefono or not ubicacion:
-            print("[ERROR]: Datos faltantes para registro de recepcionista.")
-            return None
-        recepcionista = recepcionistaModel(nombre, telefono, ubicacion, conexion)
-        print(f"[INFO]: Recepcionista '{nombre}' registrado correctamente en ubicación {ubicacion}.")
-        return recepcionista
+    def registrar_recepcionista(self) -> bool:
+        return self.modelo.guardar()
 
-    def verificar_disponibilidad(self, recepcionista: recepcionistaModel, habitacion) -> bool:
-        disponible = recepcionista.check_room_availability(habitacion)
-        estado = "disponible" if disponible else "ocupada"
-        print(f"[INFO]: Habitación {habitacion.numero} está {estado}.")
-        return disponible
-    
+    def mostrar_recepcionista(self) -> dict:
+        return {
+            "nombre": self.modelo.nombre,
+            "telefono": self.modelo.telefono,
+            "ubicacion": self.modelo.ubicacion
+        }
+
+    def verificar_disponibilidad(self, habitacion) -> bool:
+        return self.modelo.check_room_availability(habitacion)
+
+    def reservar_habitacion(self, cliente: clienteModel) -> bool:
+        return self.modelo.reservar_habitacion(cliente)
+
+    def generar_boleta(self, folio: int, cliente: clienteModel) -> bool:
+        return self.modelo.generar_boleta(folio, cliente)
+
+    def aceptar_feedback(self, cliente: clienteModel, mensaje: str) -> bool:
+        return self.modelo.accept_customer_feedback(cliente, mensaje)

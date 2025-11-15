@@ -1,5 +1,5 @@
+from __future__ import annotations
 from config.db_config import ConexionOracle
-
 class InventarioModel:
     """
         Modelo de inventario.
@@ -91,18 +91,30 @@ class InventarioModel:
         finally:
             if cursor:
                 cursor.close()
-
-
-class boletaModel:
-    def __init__(self, folio: int, cliente, usuario):
+class BoletaModel:
+    """
+    Modelo de boleta.
+    Representa una boleta emitida para un cliente por un usuario.
+    """
+    def __init__(self, folio: int, cliente: "clienteModel", usuario: "UsuarioModel"):
         self.folio = folio
         self.cliente = cliente
         self.usuario = usuario
 
-    def calcular_total(self, cargos: list[float]) -> float:
-        return sum(cargos)
+    def mostrar(self) -> dict:
+        """
+        Devuelve los datos de la boleta en formato diccionario.
+        """
+        return {
+            "folio": self.folio,
+            "cliente": self.cliente.nombre,
+            "usuario": self.usuario.nombre}
 
-    def imprimir_boleta(self):
+    def imprimir(self) -> None:
+        """
+        Muestra los datos de la boleta en consola.
+        """
+        print("\n- Datos de la boleta -")
         print(f"Folio: {self.folio}")
         print(f"Cliente: {self.cliente.nombre}")
         print(f"Usuario: {self.usuario.nombre}")
@@ -115,9 +127,37 @@ class habitacionModel:
         self.ubicacion = ubicacion
         self.estado = estado
         self.conexion = conexion
+    
+    def cambiar_estado(self, nuevo_estado: bool) -> bool:
+        """
+        Cambia el estado de la habitación en memoria y en BD.
+        """
+        cursor = self.db.obtener_cursor()
+        try:
+            consulta = "UPDATE habitaciones SET estado = :1 WHERE numero = :2"
+            cursor.execute(consulta, (nuevo_estado, self.numero))
+            self.db.connection.commit()
+            self.estado = nuevo_estado
+            print(f"[INFO]: Estado de habitación {self.numero} actualizado a {'Disponible' if nuevo_estado else 'Ocupada'}.")
+            return True
+        except Exception as e:
+            print(f"[ERROR]: Error al cambiar estado → {e}")
+            return False
+        finally:
+            cursor.close()
 
-    def cambiar_estado(self, nuevo_estado: bool):
-        self.estado = nuevo_estado
-
-    def es_disponible(self) -> bool:
+    def disponibilidad(self) -> bool:
+        """
+        Devuelve True si la habitación está disponible.
+        """
         return self.estado
+
+    def mostrar(self) -> dict:
+        """
+        Devuelve los datos de la habitación como diccionario.
+        """
+        return {
+            "numero": self.numero,
+            "cantidad_personas": self.cantidad_personas,
+            "ubicacion": self.ubicacion,
+            "estado": self.estado}

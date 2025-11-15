@@ -1,5 +1,6 @@
 from config.db_config import ConexionOracle
 from model.objetos_m import habitacionModel
+
 class UsuarioModel:
     """
         Modelo del usuario.
@@ -44,25 +45,40 @@ class clienteModel:
         Modelo del cliente.
         Contiene datos personales y la habitación asignada.
     """
-    def __init__(self, nombre: str, telefono: int, nacionalidad: str, habitacion: habitacionModel):
+    def __init__(self, nombre: str, telefono: int, nacionalidad: str, habitacion: 'habitacionModel'):
         self.nombre = nombre
         self.telefono = telefono
         self.nacionalidad = nacionalidad
         self.habitacion = habitacion
 
 
+
 class recepcionistaModel(UsuarioModel):
     """
         Modelo del recepcionista.
-        Hereda de UsuarioModel y agrega ubicación y métodos específicos.
+        Contiene métodos específicos para la gestión de clientes y habitaciones.
     """
     def __init__(self, nombre: str, telefono: int, ubicacion: str, conexion: ConexionOracle):
         super().__init__(conexion)
         self.nombre = nombre
         self.telefono = telefono
         self.ubicacion = ubicacion
+        
+    def guardar(self) -> bool:
+        cursor = self.db.obtener_cursor()
+        try:
+            consulta = "INSERT INTO recepcionistas (nombre, telefono, ubicacion) VALUES (:1, :2, :3)"
+            cursor.execute(consulta, (self.nombre, self.telefono, self.ubicacion))
+            self.db.connection.commit()
+            print(f"[INFO]: Recepcionista '{self.nombre}' guardado correctamente.")
+            return True
+        except Exception as e:
+            print(f"[ERROR]: Error al guardar recepcionista → {e}")
+            return False
+        finally:
+            cursor.close()
 
-    def check_room_availability(self, habitacion: habitacionModel) -> bool:
+    def ver_habitacion_disponible(self, habitacion: 'habitacionModel') -> bool:
         cursor = self.db.obtener_cursor()
         consulta = "select estado from habitaciones where numero = :1"
         try:
@@ -82,7 +98,7 @@ class recepcionistaModel(UsuarioModel):
             if cursor:
                 cursor.close()
 
-    def reservar_habitacion(self, cliente: "clienteModel") -> bool:
+    def reservar_habitacion(self, cliente: clienteModel) -> bool:
         cursor = self.db.obtener_cursor()
         consulta = "update habitaciones set estado = :1 where numero = :2"
         try:
@@ -97,7 +113,7 @@ class recepcionistaModel(UsuarioModel):
             if cursor:
                 cursor.close()
 
-    def generar_boleta(self, folio: int, cliente: "clienteModel") -> bool:
+    def generar_boleta(self, folio: int, cliente: clienteModel) -> bool:
         cursor = self.db.obtener_cursor()
         consulta = "insert into boletas (folio, cliente_nombre, usuario_nombre) values (:1, :2, :3)"
         try:
@@ -112,7 +128,7 @@ class recepcionistaModel(UsuarioModel):
             if cursor:
                 cursor.close()
 
-    def accept_customer_feedback(self, cliente: "clienteModel", mensaje: str) -> bool:
+    def aceptar_comentarios_cliente(self, cliente: clienteModel, mensaje: str) -> bool:
         cursor = self.db.obtener_cursor()
         consulta = "insert into feedback (cliente_nombre, mensaje) values (:1, :2)"
         try:
