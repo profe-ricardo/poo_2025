@@ -99,10 +99,11 @@ class ClienteModel:
             if cursor:
                 cursor.close()
 
-class RecepcionistaModel:
+class RecepcionistaModel(UsuarioModel):
+    
 
     def __init__(self, conexion: ConexionOracle):
-        self.db = conexion
+        super().__init__(UsuarioModel)
 
     def crear(self, nombre: str, telefono: int, nacionalidad:str, habitacion:int) -> bool:
 
@@ -201,3 +202,4 @@ class UsuarioModel:
                 cursor.close()
 
 
+RecepcionistaModel.crear()

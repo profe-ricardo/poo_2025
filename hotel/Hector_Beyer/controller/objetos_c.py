@@ -93,3 +93,6 @@ class BoletaController:
         
         else:
             return self.modelo.guardar_item(folio, usuario, cliente)
+    
+    def editar(self):
+        self.modelo.editar_item()

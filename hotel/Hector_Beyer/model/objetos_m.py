@@ -360,11 +360,11 @@ class BoletaModel:
         try:
             consulta_validacion = "select * from boletas where folio = :1"
             cursor.execute(consulta_validacion, (folio,))
-            datos = cursor.fetchall()
+            
 
             if len(cursor.fetchall()) > 0:
                 if datos:
-                    consulta_update = "update inventario set folio = :1, usuario = :2, cliente = :3 where folio = :4"
+                    consulta_update = "update boletas set folio = :1, usuario = :2, cliente = :3 where folio = :4"
                     cursor.execute(consulta_update, (folio, datos[0], datos[1], folio,))
                     self.db.connection.commit()
                     print(f"[INFO]: {folio} editada correctamente")
