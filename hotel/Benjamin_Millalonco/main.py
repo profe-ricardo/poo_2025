@@ -1,24 +1,60 @@
 from config.dbconfig import ConexionOracle
 from controller.habitacion_c import HabitacionController
 from controller.cliente_c import ClienteController
+from controller.usuario_c import UsuarioController
 
 if __name__ == "__main__":
-    conexion = ConexionOracle("USUARIO", "PASSWORD", "localhost:1521/xe")
-    conexion.conectar()
+    db = ConexionOracle("System", "Ina.2025", "localhost:1521/xe")
+    db.conectar()
 
-    habitacion_c = HabitacionController(conexion)
-    cliente_c = ClienteController(conexion)
+    habitacion_c = HabitacionController(db)
+    cliente_c = ClienteController(db)
+    usuario_c = UsuarioController(db)
 
-    print("\n--- Creando habitación ---")
-    habitacion_c.crear(101, 2, "disponible")
+    print("\n=== SISTEMA HOTEL - MENÚ PRINCIPAL ===")
 
-    print("\n--- Listando habitaciones ---")
-    habitacion_c.listar()
+    while True:
+        print("\n1) Crear usuario")
+        print("2) Login")
+        print("3) Salir")
+        opcion = input("Elige una opción: ")
 
-    print("\n--- Creando cliente ---")
-    cliente_c.crear("Juan Pérez", "999999999", "Chilena", 101)
+        if opcion == "1":
+            print("\n--- CREAR USUARIO ---")
+            nombre = input("Nombre: ")
+            telefono = input("Teléfono: ")
+            ubicacion = input("Ubicación: ")
+            password = input("Contraseña: ")
 
-    print("\n--- Listando clientes ---")
-    cliente_c.listar()
+            creado_id = usuario_c.crear(nombre, telefono, ubicacion, password)
+            if creado_id:
+                print(f"[OK] Usuario creado con ID {creado_id}")
+            else:
+                print("[ERROR] No se pudo crear el usuario.")
 
-    conexion.desconectar()
+        elif opcion == "2":
+            print("\n--- LOGIN DE USUARIO ---")
+            tel = input("Teléfono: ")
+            password = input("Contraseña: ")
+
+            login_ok = usuario_c.login(tel, password)
+            if login_ok:
+                print("[OK] Login exitoso 😊")
+            else:
+                print("[X] Login fallido ❌")
+
+        elif opcion == "3":
+            print("Saliendo del sistema...")
+            break
+
+        else:
+            print("Opción inválida. Intenta nuevamente.")
+
+    # Cerrar conexión
+    try:
+        db.cerrar()
+    except AttributeError:
+        try:
+            db.desconectar()
+        except:
+            pass
