@@ -17,4 +17,4 @@ class inventarios():
     def __init__(self, tipo: str, estado: str):
         self.tipo = tipo
         self.estado = estado
-        
+
