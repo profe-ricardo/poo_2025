@@ -1,4 +1,4 @@
-from hotel.felipe_guilmai.objetos import habitacion, comida
+from hotel1.objetos import habitacion, comida
 
 class chef():
     def __init__(self, nombre: str, id: int, locacion: str):
@@ -13,9 +13,9 @@ class manager():
     def __init__(self, nombre: str, id: int, telefono: int, locacion: str):
         self.nombre = nombre
         self.id = id
-        self.telefono = telefono 
-        self.locacion = locacion 
-    
+        self.telefono = telefono
+        self.locacion = locacion
+
     def abastecer_inventario():
         pass
 
@@ -30,9 +30,9 @@ class recepcionista():
         self.nombre = nombre
         self.id = id
         self.telefono = telefono
-        self. locacion = locacion
-    
-    def consultar_disp_habitacion():
+        self.locacion = locacion
+
+    def comprobar_disponibilidad():
         pass
 
     def reservar_habitacion():
@@ -56,7 +56,7 @@ class personalAseo():
 class cliente():
     def __init__(self, nombre: str, id: int, telefono: int, direccion: str, habitacion: habitacion):
         self.nombre = nombre
-        self.id = id 
+        self.id = id
         self.telefono = telefono
         self.direccion = direccion
         self.habitacion = habitacion
@@ -72,8 +72,7 @@ class cliente():
 
     def pedir_comida(self, pedido: list[comida]):
         for c in pedido:
-            print(c.id)
             print(c.nombre)
 
-    def subir_comentatios():
+    def subir_comentarios():
         pass
