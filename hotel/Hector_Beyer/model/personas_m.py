@@ -202,4 +202,3 @@ class UsuarioModel:
                 cursor.close()
 
 
-RecepcionistaModel.crear()

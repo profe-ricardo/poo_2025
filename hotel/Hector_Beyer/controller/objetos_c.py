@@ -96,3 +96,4 @@ class BoletaController:
     
     def editar(self):
         self.modelo.editar_item()
+
