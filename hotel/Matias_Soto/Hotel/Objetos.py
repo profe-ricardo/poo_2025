@@ -18,5 +18,10 @@ class Inventario():
         self.tipo = str
         self.Estado = str
         
+    def revisarInventario(self):
+        print(f"Tipo {self.tipo}")
+        print(f"Estado: {self.Estado}")
 
+        return self
+        
 
