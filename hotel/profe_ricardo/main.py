@@ -1,17 +1,9 @@
-# from hotel.profe_ricardo.view.personas_v import chef
+import bcrypt
 
-# def main():
-#     print("Aplicacion iniciada")
-#     chefcito = chef('Remi', 1, 'Paris', ['Ratatoullie'])
-
-#     print(chefcito.ver_pedidos())
-#     print(chefcito.recibir_pedido(['Bebida', 'Completo', 'Pie de limon']))
-#     print(chefcito.ver_pedidos())
-
-from hotel.profe_ricardo.config.db_config import ConexionOracle
-from hotel.profe_ricardo.model.personas_m import UsuarioModel
-from hotel.profe_ricardo.controller.personas_c import UsuarioController
-from hotel.profe_ricardo.view.personas_v import UsuarioView
+from config.db_config import ConexionOracle, validar_tablas
+# from hotel.profe_ricardo.model.personas_m import UsuarioModel
+# from hotel.profe_ricardo.controller.personas_c import UsuarioController
+# from hotel.profe_ricardo.view.personas_v import UsuarioView
 
 def conectarBD():
     """
@@ -20,26 +12,50 @@ def conectarBD():
     db = ConexionOracle("system", "Ina.2025", "localhost:1521/xe")
     db.conectar()
 
+    # validar_tablas(db)
+
     return db
 
+# def main():
+#     """
+#         Genera registro de usuario en BD conectada.\n
+#         Debe existir tabla 'usuarios' con las columnas 'nombre' y 'telefono'.\n
+#         Tabmién devuelve una lista de los usuarios registrados.
+#     """
+#     db = conectarBD()
+    
+#     try:
+#         modelo = UsuarioModel(db)
+#         controlador = UsuarioController(modelo)
+#         vista = UsuarioView()
+
+#         print("Aplicacion iniciada")
+
+#         ingreso = controlador.registrar_usuario('Ricardo', 912345678)
+
+#         if ingreso:
+#             usuarios = controlador.listar_usuarios()
+#             vista.mostrar_usuarios(usuarios)
+#     finally:
+#         db.desconectar()
+
 def main():
-    """
-        Genera registro de usuario en BD conectada.\n
-        Debe existir tabla 'usuarios' con las columnas 'nombre' y 'telefono'.\n
-        Tabmién devuelve una lista de los usuarios registrados.
-    """
     db = conectarBD()
-    modelo = UsuarioModel(db)
-    controlador = UsuarioController(modelo)
-    vista = UsuarioView()
 
-    print("Aplicacion iniciada")
+    print("Inicio de sesión, ingrese sus credenciales\n")
+    id_u = int(input("Ingrese su id: "))
+    usuario = str(input("Ingrese su nombre de usuario: "))
+    clave = str(input("Ingrese su clave: "))
+    clave = bytes(clave, encoding="utf-8")
 
-    ingreso = controlador.registrar_usuario('Ricardo', 912345678)
+    salt = bcrypt.gensalt()
+    clave_encriptada = bcrypt.hashpw(clave, salt)
 
-    if ingreso:
-        usuarios = controlador.listar_usuarios()
-        vista.mostrar_usuarios(usuarios)
+    cursor = db.obtener_cursor()
+
+    consulta = "insert into usuarios (id, nombre_usuario, clave) values (:1, :2, :3)"
+    cursor.execute(consulta, (id_u, usuario, clave_encriptada))
+    db.connection.commit()
 
     db.desconectar()
 
