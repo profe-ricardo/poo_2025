@@ -1,4 +1,12 @@
+<<<<<<< HEAD:hotel/Chr_vargas/aaa/personas.py
 from objetos import habitacion, comida
+=======
+<<<<<<< Updated upstream
+from hotel.Luis_Antivil.objetos import habitacion, comida
+=======
+from objetos import habitacion, comida
+>>>>>>> Stashed changes
+>>>>>>> 04591e085533c427693f7e9ddff3f6e5970edea6:hotel/Chr_vargas/personas.py
 
 class chef():
     def __init__(self, nombre:str,id:int,locacion:str):
