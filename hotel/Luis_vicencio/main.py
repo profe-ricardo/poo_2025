@@ -40,7 +40,7 @@ def conectarBD():
 
 def main():
     db = conectarBD()
-    cursor = db.obtener_cursor()
+    
     print("Inicio de sesion, Ingrese sus credenciales\n")
     id_u = int(input("ingrese su ID: "))
     usuario = str(input("ingrese su nombre de usuario: "))
@@ -50,7 +50,7 @@ def main():
     salt = bcrypt.gensalt()
     clave_encriptada = bcrypt.hashpw(clave, salt)
 
-    
+    cursor = db.obtener_cursor()
 
     consulta = "insert into usuarios (id, nombre_usuario, clave) values (:1, :2, :3)"
     cursor.execute(consulta, (id_u, usuario, clave_encriptada))
@@ -61,6 +61,6 @@ def main():
 if __name__ == "__main__":
     main()
 
-    
+
 
 

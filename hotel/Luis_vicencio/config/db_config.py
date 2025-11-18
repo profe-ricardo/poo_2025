@@ -9,7 +9,7 @@ class ConexionOracle:
 
     def conectar(self):
         try:
-            self.conection = oracledb.connect(
+            self.connection = oracledb.connect(
                 user=self.usuario,
                 password=self.password,
                 dsn=self.url
