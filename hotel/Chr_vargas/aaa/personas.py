@@ -2,7 +2,7 @@
 from objetos import habitacion, comida
 =======
 <<<<<<< Updated upstream
-from hotel.Luis_Antivil.objetos import habitacion, comida
+from hotel.Luis_Antivil.clases.objetos import habitacion, comida
 =======
 from objetos import habitacion, comida
 >>>>>>> Stashed changes
