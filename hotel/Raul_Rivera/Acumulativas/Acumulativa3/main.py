@@ -46,13 +46,24 @@ def main():
     id_u= int(input("Ingrese su id:"))
     usuario= str(input("Ingrese su nombre de usuario: "))
     clave = str(input("Ingrese su contraseña: "))
-    clave= bytes(clave,encoding="utf-8")
+
+    consulta= "select clave from usuarios where nombre_usuario = :1"
+    clave_bd=cursor.fetchone()
+   
+    cursor.execute(consulta,(usuario,))
+    clave_bytes= bytes(clave,encoding="utf-8")
+    clave_test= bytes(clave_bd[0], encoding="utf-8",)
+    validacion_clave= (clave_bytes,clave_test)
     clave_encriptada= bcrypt.hashpw(clave, bcrypt.gensalt())
 
+    if validacion_clave:
+        print("Ingreso Correcto")
+    else:
+        print("Credenciales Incorrectas")
     cursor= db.obtener_cursor()
 
-    consulta = 'insert into usuarios (id, nombre_usuario, clave) values (:1, :2, :3)'
-    cursor.execute(consulta, (id_u,usuario, clave_encriptada))
+    consulta = 'insert into usuarios (nombre_usuario, clave) values (:1, :2)'
+    cursor.execute(consulta, (id_u,usuario, clave_encriptada,))
     db.connection.commit()
 
     db.desconectar()
