@@ -38,22 +38,25 @@ def conectarBD():
 #     finally:
 #         db.desconectar()
 
-def main():
-    db= conectarBD()
-    print("Inicio de sesion, ingrese sus credenciales\n")
-    usuario=str(input("Ingrese su nombre de usuario: "))
-    clave=str(input("Ingrese su clave: "))
+# def main():
+#     db= conectarBD()
+#     print("Inicio de sesion, ingrese sus credenciales\n")
+#     usuario=str(input("Ingrese su nombre de usuario: "))
+#     clave=str(input("Ingrese su clave: "))
 
-    salt= bcrypt.gensalt()
-    clave_encriptada = bcrypt.hashpw(bytes(clave, "utf-8"), salt)
+#     salt= bcrypt.gensalt()
+#     clave_encriptada = bcrypt.hashpw(bytes(clave, "utf-8"), salt)
 
-    cursor = db.obtener_cursor()
+#     cursor = db.obtener_cursor()
 
-    consulta="insert into usuarios (nombre_usuario, clave) values (:1, :2)"
-    cursor.execute(consulta, (usuario, clave_encriptada))
-    db.connection.commit()
+#     consulta="insert into usuarios (nombre_usuario, clave) values (:1, :2)"
+#     cursor.execute(consulta, (usuario, clave_encriptada))
+#     db.connection.commit()
 
-    db.desconectar()
+#     db.desconectar()
+
+
+    
     
 
 if __name__ == "__main__":
