@@ -39,9 +39,21 @@ def main():
 
     cursor = db.obtener_cursor()
 
-    consulta = "insert into usuario (id, nombre_usuario, clave) values (:1, :2, :3)"
-    cursor.execute(consulta,(id_u, Usuario, clave_encriptada))
+    consulta = "select clave from usuario where nombre_usuario = :1"
+    cursor.execute(consulta, (Usuario), str(clave_encriptada))
     db.connection.commit()
+
+    Usuario = str(input("Ingrese su nombre de usuario\n"))
+    Clave = str(input("Ingrese su contraseña\n"))
+    Clave = bytes(Clave, encoding="utf-8")
+
+    if Clave == clave_encriptada:
+        print("Clave valida")
+    else:
+        print("Clave invalida")
+
+
+    
 
     db.desconectar()
 
