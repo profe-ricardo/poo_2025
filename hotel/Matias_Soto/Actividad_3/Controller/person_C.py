@@ -5,8 +5,8 @@ class UsuarioController:
         Controlador del usuario.\n
         Métodos para registrar y mostrar usuarios.
     """
-    def __init__(self, model: UsuarioModel):
-        self.model = model
+    def __init__(self, modelo: UsuarioModel):
+        self.modelo = modelo
 
     def registrar_usuario(self, nombre: str, telefono: int) -> bool:
 

@@ -1,0 +1,14 @@
+import json
+import requests
+from config.db_config import ConexionOracle
+
+
+def Conexion(ConexionOracle):
+    
+
+url = "https://jsonplaceholder.typicode.com/posts"
+request = requests.get(url)
+data = request.json()
+
+for post in data:
+    print(post)

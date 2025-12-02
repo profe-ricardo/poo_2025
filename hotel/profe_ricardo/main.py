@@ -12,7 +12,7 @@ def conectarBD():
     db = ConexionOracle("system", "Ina.2025", "localhost:1521/xe")
     db.conectar()
 
-    # validar_tablas(db)
+    validar_tablas(db)
 
     return db
 
