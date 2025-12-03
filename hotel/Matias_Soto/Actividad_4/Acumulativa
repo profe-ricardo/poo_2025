@@ -1,14 +1,29 @@
 import json
 import requests
-from config.db_config import ConexionOracle
+from config.db_config import ConexionOracle,validar_tablas
 
 
-def Conexion(ConexionOracle):
+def conectarBD():
+    db = ConexionOracle("system", "Ina.2025", "localhost:1521/xe")
+
+    db.conectar()
+
+    validar_tablas(db)   
+    return db
+
+def main():
+
+    db = conectarBD()
+    cursor = db.obtener_cursor()
+
+    with open ("C:/Users/20315245-0/Desktop/Poo/poo_2025/posts.json", "r") as archivo:
+         Datos = json.load(archivo)
     
+    for post in Datos:
+         consulta = "insert into post (id,userId, title, body) values (:1, :2, :3, :4)"
+         cursor.execute(consulta, (post['id'], post['userId'], post['title'],post['body']))
+         db.connection.commit()
+    db.desconectar()
 
-url = "https://jsonplaceholder.typicode.com/posts"
-request = requests.get(url)
-data = request.json()
-
-for post in data:
-    print(post)
+if __name__ == "__main__":
+        main()
